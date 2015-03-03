@@ -1,0 +1,38 @@
+<h1>{{pageTitle}}</h1>
+
+<div class="row">
+  <div class="large-4 medium-6 columns">
+    <form novalidate>
+      <div class="row">
+        <div class="large-12 columns">
+          <label>To
+            <input type="text" ng-model="tx.toAddress" required>
+          </label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="large-6 columns">
+          <label>Amount
+            <input type="number" ng-model="tx.amount" required>
+          </label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="large-12 columns">
+          <label>Note
+            <textarea ng-model="tx.message" ng-maxlength="100"></textarea>
+          </label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="large-12 columns">
+          <input 
+            type="submit" 
+            class="button" 
+            ng-click="send(tx)" 
+            value="Send">
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

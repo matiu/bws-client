@@ -1,0 +1,52 @@
+<h1>{{pageTitle}}</h1>
+<div class="row">
+  <div class="large-4 medium-6 columns" ng-show="!secret">
+    <form novalidate>
+      <div class="row">
+        <div class="large-12 columns">
+          <label>Name
+            <input type="text" ng-model="wallet.name" required>
+          </label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="large-6 medium-6 columns">
+          <label>Number of copayers
+            <select ng-model="totalCopayers" ng-options="totalCopayers as totalCopayers for totalCopayers in TCValues">
+            </select>
+          </label>
+        </div>
+        <div class="large-6 medium-6 columns">
+          <label>Required signatures
+            <select ng-model="requiredCopayers" ng-options="requiredCopayers as requiredCopayers for requiredCopayers in RCValues" ng-disabled="totalCopayers == 1">
+            </select>
+          </label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="large-12 columns">
+          <label for="network-name">
+            <input id="network-name" type="checkbox" ng-model="wallet.network" ng-true-value="'testnet'"
+            ng-false-value="'livenet'" class="form-control" ng-checked="networkName == 'testnet' ? true : false">
+            Use test network
+          </label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="large-12 columns">
+          <input 
+            type="submit" 
+            class="button" 
+            ng-click="create(wallet)" 
+            value="Create">
+        </div>
+      </div>
+    </form> 
+  </div>
+  <div class="large-12 columns" ng-show="secret">
+    <div class="panel">
+      <p>Copy and share the follow string with other copayers to complete the ring</p>
+      {{secret}}
+    </div>
+  </div>
+</div>

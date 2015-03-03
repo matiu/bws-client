@@ -1,0 +1,9 @@
+<h1>{{pageTitle}}</h1>
+
+<div class="row" ng-init="getHistory()" ng-show="history">
+  <div class="large-12 columns">
+    <ul>
+      <li ng-repeat="h in history">{{h}}</li>
+    </ul>
+  </div>
+</div>

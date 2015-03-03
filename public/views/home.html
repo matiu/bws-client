@@ -1,0 +1,38 @@
+<h1>{{pageTitle}}
+  <small class="animated infinite flash" 
+    ng-show="!$root.currentWallet.balance && $root.wallets[0] && !$root.offline">
+    <i class="fi-bitcoin-circle"></i>
+  </small>
+</h1>
+
+<div class="row" ng-init="updateList()">
+  <div class="large-12 columns">
+    <button ng-show="$root.currentWallet.wallet" class="button warning small" ng-click="updateList()">Update</button>
+    <div ng-if="!$root.wallets[0]">Don't have any wallet. 
+      <a ui-sref="create">Create</a> a new one or <a ui-sref="join">Join</a> to an existent wallet.
+    </div>
+  </div>
+</div>
+
+<div ng-if="$root.currentWallet.wallet">
+  <div class="panel">
+    <div>
+      Wallet {{$root.currentWallet.wallet.name || $root.currentWallet.wallet.walletName}} 
+      [{{$root.currentWallet.wallet.network}}]: 
+      {{$root.currentWallet.wallet.m}}-of-{{$root.currentWallet.wallet.n}} 
+      {{$root.currentWallet.wallet.status}}
+    </div>
+    <div ng-if="$root.currentWallet.wallet.status == 'complete'">
+      <b>Balance</b>: {{$root.currentWallet.balance.totalAmount}} 
+      (Locked: {{$root.currentWallet.balance.lockedAmount}})
+    </div>
+  </div>
+  <div ng-show="$root.currentWallet.pendingTxps[0]">
+    <ul>
+      <li ng-repeat="txp in $root.currentWallet.pendingTxps">
+        {{txp}}
+      </li>
+    </ul>
+  </div>
+</div>
+

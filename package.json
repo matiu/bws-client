@@ -1,0 +1,20 @@
+{
+  "name": "bws-client",
+  "version": "0.0.1",
+  "description": "A bitcore wallet service client",
+  "main": "bws-client.js",
+  "author": "Gustavo Cortez",
+  "dependencies": {
+    "body-parser": "^1.12.0",
+    "express": "^4.11.2",
+    "recursive-readdir": "^1.2.1",
+    "grunt-contrib-copy": "^0.8.0",
+    "grunt-contrib-concat": "^0.5.1"
+  },
+  "scripts": {
+    "start": "node bws-client.js"
+  },
+  "devDependencies": {
+    "grunt-contrib-watch": "^0.6.1"
+  }
+}

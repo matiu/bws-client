@@ -1,0 +1,33 @@
+<h1>{{pageTitle}}</h1>
+<div class="row">
+  <div class="large-4 medium-6 columns">
+    <form novalidate>
+      <div class="row">
+        <div class="large-12 columns">
+          <label>Name
+            <input type="text" ng-model="user.name" required>
+          </label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="large-12 columns">
+          <label>Password
+            <input type="password" ng-model="user.password" required>
+          </label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="large-12 columns">
+          <input 
+            type="submit" 
+            class="button" 
+            ng-click="signin(user)" 
+            value="Enter">
+        </div>
+      </div>
+    </form>
+    <div>
+      Don't have a profile? <a ui-sref="signup">Signup</a>.
+    </div>
+  </div>
+</div>

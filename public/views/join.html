@@ -1,0 +1,24 @@
+<h1>{{pageTitle}}</h1>
+<div class="row">
+  <div class="large-4 medium-6 columns">
+    <form novalidate>
+      <div class="row">
+        <div class="large-12 columns">
+          <label>Secret
+            <input type="text" ng-model="wallet.secret" required>
+          </label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="large-12 columns">
+          <input 
+            type="submit" 
+            class="button" 
+            ng-click="join(wallet)" 
+            value="Join">
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+

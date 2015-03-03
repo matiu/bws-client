@@ -1,0 +1,11 @@
+<h1>{{pageTitle}}</h1>
+
+<button class="button primary small" ng-click="getAddress()">New address</button>
+<p ng-init="getAddress()">My bitcoin address: {{address}}</p>
+
+<button class="button secondary small" ng-click="getAddresses()">List all addresses</button>
+<div class="panel" ng-show="addresses[0]">
+  <ul>
+    <li ng-repeat="a in addresses">{{a.address}}</li>
+  </ul>
+</div>
