@@ -80,7 +80,7 @@ bwsClientApp.config(
         authenticate: true
       });
   })
-  .run(function ($rootScope, $state, $interval, identityService, walletService) {
+  .run(function ($rootScope, $state, identityService) {
 
     $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){
       if (toState.authenticate && !identityService.isAuthenticated()){

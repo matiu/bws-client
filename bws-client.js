@@ -24,7 +24,11 @@ var initWallet = function(walletData) {
   if (!walletData) {
     return client;
   }
-  client.import(JSON.stringify(walletData));
+  if (typeof(walletData) != 'string') {
+    walletData = JSON.stringify(walletData);
+  }
+
+  client.import(walletData);
   return client;
 };
 
@@ -129,7 +133,7 @@ app.post('/addresses', function(req, res) {
   });
 });
 
-app.get('/balance', function(req, res) {
+app.post('/balance', function(req, res) {
   var walletData = req.body;
   var c = initWallet(walletData);
 
