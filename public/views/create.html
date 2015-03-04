@@ -46,7 +46,9 @@
   <div class="large-12 columns" ng-show="secret">
     <div class="panel">
       <p>Copy and share the follow string with other copayers to complete the ring</p>
-      {{secret}}
+      <p>{{secret}}</p>
+      <button class="button success small" 
+        ng-click="reopenWallet($root.iden.lastOpenedWallet)">Update after all copayers joined</button>
     </div>
   </div>
 </div>

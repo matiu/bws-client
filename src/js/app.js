@@ -5,7 +5,8 @@ var modules = [
   'mm.foundation',
   'ngAnimate',
   'LocalStorageModule',
-  'ngLodash'
+  'ngLodash',
+  'angularMoment'
 ];
 
 var bwsClientApp = angular.module('bwsClientApp', modules);

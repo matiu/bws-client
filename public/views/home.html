@@ -5,7 +5,7 @@
   </small>
 </h1>
 
-<div class="row" ng-init="updateList()">
+<div class="row">
   <div class="large-12 columns">
     <button ng-show="$root.currentWallet.wallet" class="button warning small" ng-click="updateList()">Update</button>
     <div ng-if="!$root.wallets[0]">Don't have any wallet. 
@@ -27,10 +27,36 @@
       (Locked: {{$root.currentWallet.balance.lockedAmount}})
     </div>
   </div>
+
   <div ng-show="$root.currentWallet.pendingTxps[0]">
+    <h3>Spend proposals</h3>
     <ul>
       <li ng-repeat="txp in $root.currentWallet.pendingTxps">
-        {{txp}}
+      <b>{{txp.toAddress}}</b> ({{txp.amount}} bits) - {{txp.createdOn * 1000 | amTimeAgo}} by
+      <b>{{txp.creatorName}}</b><br>
+      <span ng-show="txp.message">"{{txp.message}}"</span>
+      <div ng-show="txp.actions">
+        Copayers:
+        <ul>
+          <li 
+          ng-repeat="ac in txp.actions">
+          {{ac.copayerName}} <b>{{ac.type}}</b><br>
+          <span ng-show="ac.comment">"{{ac.comment}}"</span>
+          </li>
+        </ul>
+      </div>
+      <div ng-init="missingSignatures = txp.requiredSignatures - checkSignatures(txp.actions)">
+        <div ng-show="missingSignatures">
+          Missing signatures: {{missingSignatures}}
+          <div ng-show="!checkMyAction(txp.actions)">
+            <button class="button success tiny" ng-click="sign(txp)">Sign</button> 
+            <button class="button alert tiny" ng-click="reject(txp)">Reject</button>
+          </div>
+        </div>
+        <div ng-show="!missingSignatures">
+          <button class="button secondary tiny" ng-click="broadcast(txp)">Broadcast</button> 
+        </div>
+      </div>
       </li>
     </ul>
   </div>

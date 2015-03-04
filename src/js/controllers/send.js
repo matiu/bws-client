@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('bwsClientApp').controller('sendController', 
-  function($scope, walletService) {
+  function($scope, $state, walletService) {
     $scope.pageTitle = 'Send';
 
     $scope.send = function(tx) {
@@ -10,6 +10,8 @@ angular.module('bwsClientApp').controller('sendController',
       }
       walletService.sendTransaction(tx, function(err, tx) {
         if (err) return;
+        $state.transitionTo('home');
+        walletService.list();
       });
     };
 

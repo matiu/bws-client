@@ -3,7 +3,12 @@
 <div class="row" ng-init="getHistory()" ng-show="history">
   <div class="large-12 columns">
     <ul>
-      <li ng-repeat="h in history">{{h}}</li>
+      <li ng-repeat="h in history">
+        <b>{{h.action}}</b> ({{(h.time * 1000 | amTimeAgo) || 'Unconfirmed'}})<br>
+        {{h.txid}}<br>
+        {{h.amount}} bits<br>
+        <span ng-show="h.message">"{{h.message}}"</span>
+      </li>
     </ul>
   </div>
 </div>

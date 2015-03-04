@@ -43,6 +43,11 @@ angular.module('bwsClientApp').controller('createController',
       updateRCSelect(tc);
     });
 
+    $scope.reopenWallet = function(id) {
+      $state.transitionTo('home');
+      walletService.open(id, function(err, w) {});
+    };
+
     $scope.create = function(wallet) {
       if (!wallet || !wallet.name) {
         return;
@@ -60,6 +65,7 @@ angular.module('bwsClientApp').controller('createController',
         }
         else {
           $state.transitionTo('home');
+          walletService.list();
         }
       }); 
     };

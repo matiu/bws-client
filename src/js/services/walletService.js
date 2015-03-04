@@ -83,11 +83,12 @@ angular.module('bwsClientApp').factory('walletService',
       $http.post('/join', wallet).
         success(function(data, status, headers, config) {
           if (!data.err) {
-            $rootScope.iden.wallets
             var obj = JSON.parse(data.wallet);
             set(obj.walletId, data.wallet);
           }
-          return cb(data.err, data.res);
+          root.open(obj.walletId, function(err, w) {
+            return cb(data.err, data.res);
+          });
       }).
       error(function(data, status, headers, config) {});
     };
@@ -97,10 +98,8 @@ angular.module('bwsClientApp').factory('walletService',
       if (!ws) return cb();
       $http.post('/open', ws).
         success(function(data, status, headers, config) {
-          if (!data.err) {
-            $rootScope.currentWallet = {wallet: JSON.parse(ws)};
-            set(wId, data.wallet);
-          }
+          $rootScope.currentWallet = {wallet: JSON.parse(ws)};
+          set(wId, data.wallet);
           updateStatus(data.wallet, function(err, w) {
             if (!err && w) {
               $rootScope.currentWallet = w;

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('bwsClientApp').factory('identityService', 
-  function($rootScope, $state, localStorageService) {
+  function($rootScope, $state, localStorageService, walletService) {
     var root = {};
 
     var checkIfExist = function(user) {
@@ -16,6 +16,7 @@ angular.module('bwsClientApp').factory('identityService',
       var localUser = checkIfExist(user);
       if (localUser && user.password === localUser.password ) {
         $rootScope.iden = localUser;
+        walletService.list();
         $state.go('home');
       }
       else {
